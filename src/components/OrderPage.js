@@ -1,0 +1,139 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { Check, Package, Box, Truck } from 'lucide-react';
+
+const OrderPage = () => {
+  const [orderItems, setOrderItems] = useState([]);
+  const [orderTotal, setOrderTotal] = useState(0);
+  const [orderNumber, setOrderNumber] = useState('');
+
+  useEffect(() => {
+    // Load cart items from localStorage
+    const savedCart = JSON.parse(localStorage.getItem('cart')) || [];
+    
+    // Save order items to orders in localStorage
+    const existingOrders = JSON.parse(localStorage.getItem('orders')) || [];
+    const newOrder = {
+      id: `EAG-${Math.floor(Math.random() * 1000000)}`,
+      items: savedCart,
+      total: savedCart.reduce((sum, item) => {
+        const price = parseFloat(item.price.replace(/[^0-9.-]+/g, ''));
+        return sum + (price * item.quantity);
+      }, 0),
+      date: new Date().toISOString()
+    };
+    
+    // Add new order to existing orders
+    const updatedOrders = [...existingOrders, newOrder];
+    localStorage.setItem('orders', JSON.stringify(updatedOrders));
+
+    // Set state for current order
+    setOrderItems(savedCart);
+    setOrderNumber(newOrder.id);
+    setOrderTotal(newOrder.total);
+
+    // Clear the cart after order placement
+    localStorage.setItem('cart', JSON.stringify([]));
+  }, []);
+
+  return (
+
+    
+    <div className="min-h-screen bg-gray-50">
+      <header className="fixed top-0 left-0 w-full bg-white shadow-sm z-50">
+        <nav className="container mx-auto px-4 py-4">
+          <div className="flex items-center justify-between">
+            <Link to="/" className="flex items-center space-x-2 text-gray-800">
+              <span className="font-bold text-lg uppercase">Eagle Sports</span>
+            </Link>
+          </div>
+        </nav>
+      </header>
+
+      <main className="max-w-4xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
+        <div className="bg-white shadow-lg rounded-lg overflow-hidden">
+          <div className="p-6 bg-green-50 flex items-center">
+            <Check className="h-10 w-10 text-green-600 mr-4" />
+            <div>
+              <h2 className="text-2xl font-bold text-green-800">Order Confirmed!</h2>
+              <p className="text-green-700">Thank you for your purchase</p>
+            </div>
+          </div>
+
+          <div className="p-6">
+            <div className="flex justify-between mb-6">
+              <div>
+                <h3 className="text-lg font-semibold">Order Details</h3>
+                <p className="text-gray-600">Order Number: {orderNumber}</p>
+                <p className="text-gray-600">Order Date: {new Date().toLocaleDateString()}</p>
+              </div>
+              <div className="text-right">
+                <p className="font-medium">Estimated Delivery</p>
+                <p className="text-gray-600">5-7 Business Days</p>
+              </div>
+            </div>
+
+            <div className="border-t pt-4">
+              {orderItems.map((item) => (
+                <div 
+                  key={item.id} 
+                  className="flex items-center justify-between py-3 border-b"
+                >
+                  <div className="flex items-center">
+                    <img 
+                      src={item.image} 
+                      alt={item.name} 
+                      className="w-16 h-16 object-cover rounded-md mr-4" 
+                    />
+                    <div>
+                      <h4 className="font-medium">{item.name}</h4>
+                      <p className="text-gray-600">
+                        Size: {item.size || 'N/A'} | Quantity: {item.quantity}
+                      </p>
+                    </div>
+                  </div>
+                  <span className="font-medium">{item.price}</span>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 flex justify-between items-center">
+              <div className="flex items-center space-x-4">
+                <Box className="h-8 w-8 text-orange-500" />
+                <div>
+                  <h4 className="font-semibold">Shipping Method</h4>
+                  <p className="text-gray-600">Standard Shipping (Free)</p>
+                </div>
+              </div>
+              <div className="flex items-center space-x-4">
+                <Truck className="h-8 w-8 text-blue-500" />
+                <div className="text-right">
+                  <h4 className="font-semibold">Total Paid</h4>
+                  <p className="text-gray-900 font-bold">{orderTotal.toFixed(2)}/-</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="bg-gray-50 p-6 flex justify-between items-center">
+            <Link 
+              to="/products" 
+              className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors"
+            >
+              Continue Shopping
+            </Link>
+            <Link 
+              to="/order-tracking" 
+              className="bg-orange-500 text-white px-6 py-2 rounded-md hover:bg-green-600 transition-colors"
+            >
+              Track Order
+            </Link>
+          </div>
+        </div>
+      </main>
+    </div>
+   
+  );
+};
+
+export default OrderPage;
