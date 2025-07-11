@@ -130,7 +130,7 @@ const LoginPage = () => {
                   <Link to="#" className="hover:text-gray-200">
                     <Twitter className="w-5 h-5" />
                   </Link>
-                  <Link to="https://www.instagram.com/eaglesports_wear/?hl=en" className="hover:text-gray-200">
+                  <Link to="https://www.instagram.com/Propulse.sports_wear/?hl=en" className="hover:text-gray-200">
                     <Instagram className="w-5 h-5" />
                   </Link>
                 </div>
