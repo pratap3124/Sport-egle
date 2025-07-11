@@ -44,7 +44,7 @@ const OrderPage = () => {
         <nav className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <Link to="/" className="flex items-center space-x-2 text-gray-800">
-              <span className="font-bold text-lg uppercase">Eagle Sports</span>
+              <span className="font-bold text-lg uppercase">ProPulse</span>
             </Link>
           </div>
         </nav>
