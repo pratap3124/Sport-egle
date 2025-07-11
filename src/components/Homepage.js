@@ -50,7 +50,7 @@ const Homepage = () => {
         <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center text-gray-800 font-bold text-lg">
             <Home className="w-6 h-6 text-[#fc641e] mr-2" />
-            EAGLE SPORTS
+            ProPulse
           </Link>
           
           {/* Mobile Menu Button */}
