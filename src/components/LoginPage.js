@@ -10,7 +10,7 @@ const LoginPage = () => {
         <div className="container mx-auto px-4 py-4 flex items-center justify-between">
           <Link to="/" className="flex items-center text-xl font-bold text-gray-800">
             <Home className="w-6 h-6 text-orange-500 mr-2" />
-            EAGLE SPORTS
+            ProPulse
           </Link>
           
           <nav className="hidden md:flex items-center space-x-6">
