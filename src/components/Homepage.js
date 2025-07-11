@@ -88,7 +88,7 @@ const Homepage = () => {
         >
           <div className="bg-black bg-opacity-10 w-full h-full absolute" />
           <div className="relative z-10 px-4">
-            <h1 className="text-4xl font-bold mb-4">Welcome to Eagle Sports Wear</h1>
+            <h1 className="text-4xl font-bold mb-4">Welcome to ProPulse Sports Wear</h1>
             <p className="text-xl mb-8">Discover amazing products at great prices!</p>
             <Link to="/products" className="bg-[#ff6a00] text-white px-8 py-3 rounded-lg text-lg hover:bg-green-600 transition-colors">
               Shop Now
