@@ -13,7 +13,7 @@ const SignUpPage = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center text-gray-700 font-bold text-lg">
             <Home className="w-6 h-6 text-[#fc641e] mr-2" />
-            EAGLE SPORTS
+            ProPulse
           </Link>
 
           {/* Menu Icon */}
